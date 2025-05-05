@@ -52,7 +52,7 @@ const Contact = () => {
               </div>
               <div>
                 <p className="font-medium text-gray-900">Address</p>
-                <p className="text-gray-700">No. 46 Tausi Lane, Crystal City, ST 12345</p>
+                <p className="text-gray-700">No. 46 Tausi Lane, Ongata Rongai, ST 12345</p>
               </div>
             </div>
           </div>
