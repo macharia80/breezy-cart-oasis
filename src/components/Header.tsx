@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ShoppingCart, User, Menu, X, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -15,11 +15,47 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          <Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors">Home</Link>
-          <Link to="/products" className="text-gray-700 hover:text-emerald-600 transition-colors">Shop</Link>
-          <Link to="/categories" className="text-gray-700 hover:text-emerald-600 transition-colors">Categories</Link>
-          <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors">About</Link>
-          <Link to="/contact" className="text-gray-700 hover:text-emerald-600 transition-colors">Contact</Link>
+          <NavLink 
+            to="/" 
+            className={({ isActive }) => 
+              isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+            }
+            end
+          >
+            Home
+          </NavLink>
+          <NavLink 
+            to="/products" 
+            className={({ isActive }) => 
+              isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+            }
+          >
+            Shop
+          </NavLink>
+          <NavLink 
+            to="/categories" 
+            className={({ isActive }) => 
+              isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+            }
+          >
+            Categories
+          </NavLink>
+          <NavLink 
+            to="/about" 
+            className={({ isActive }) => 
+              isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+            }
+          >
+            About
+          </NavLink>
+          <NavLink 
+            to="/contact" 
+            className={({ isActive }) => 
+              isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+            }
+          >
+            Contact
+          </NavLink>
         </nav>
         
         {/* Icons */}
@@ -49,11 +85,52 @@ const Header = () => {
         {isMenuOpen && (
           <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-200 p-4 shadow-lg md:hidden">
             <nav className="flex flex-col space-y-4">
-              <Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors">Home</Link>
-              <Link to="/products" className="text-gray-700 hover:text-emerald-600 transition-colors">Shop</Link>
-              <Link to="/categories" className="text-gray-700 hover:text-emerald-600 transition-colors">Categories</Link>
-              <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors">About</Link>
-              <Link to="/contact" className="text-gray-700 hover:text-emerald-600 transition-colors">Contact</Link>
+              <NavLink 
+                to="/" 
+                className={({ isActive }) => 
+                  isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+                }
+                onClick={() => setIsMenuOpen(false)}
+                end
+              >
+                Home
+              </NavLink>
+              <NavLink 
+                to="/products" 
+                className={({ isActive }) => 
+                  isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Shop
+              </NavLink>
+              <NavLink 
+                to="/categories" 
+                className={({ isActive }) => 
+                  isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Categories
+              </NavLink>
+              <NavLink 
+                to="/about" 
+                className={({ isActive }) => 
+                  isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </NavLink>
+              <NavLink 
+                to="/contact" 
+                className={({ isActive }) => 
+                  isActive ? "text-emerald-600 font-medium" : "text-gray-700 hover:text-emerald-600 transition-colors"
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </NavLink>
               
               <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
                 <Button variant="ghost" size="icon">
@@ -62,7 +139,7 @@ const Header = () => {
                 <Button variant="ghost" size="icon">
                   <User className="h-5 w-5" />
                 </Button>
-                <Link to="/cart">
+                <Link to="/cart" onClick={() => setIsMenuOpen(false)}>
                   <Button variant="ghost" size="icon" className="relative">
                     <ShoppingCart className="h-5 w-5" />
                     <span className="absolute -top-1 -right-1 bg-emerald-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
