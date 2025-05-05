@@ -1,26 +1,41 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Star, ShoppingCart, Heart } from 'lucide-react';
+import { Star, ShoppingCart, Heart, ImageOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/lib/data';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const [imageError, setImageError] = React.useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <div className="product-card bg-white rounded-lg overflow-hidden border border-gray-200 h-full flex flex-col">
       {/* Product Image */}
       <Link to={`/product/${product.id}`} className="block relative overflow-hidden group">
-        <div className="aspect-square overflow-hidden">
-          <img 
-            src={product.image} 
-            alt={product.name} 
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
+        <AspectRatio ratio={1 / 1} className="bg-gray-100">
+          {!imageError ? (
+            <img 
+              src={product.image} 
+              alt={product.name} 
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              onError={handleImageError}
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-200">
+              <ImageOff className="h-12 w-12 text-gray-400" />
+            </div>
+          )}
+        </AspectRatio>
         <div className="absolute top-2 right-2">
           <Button variant="ghost" size="icon" className="rounded-full bg-white/80 hover:bg-white">
             <Heart className="h-5 w-5" />

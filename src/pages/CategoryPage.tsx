@@ -1,8 +1,10 @@
 
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { products, categories } from '@/lib/data';
 import ProductCard from '@/components/ProductCard';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { ArrowLeft } from 'lucide-react';
 
 const CategoryPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,6 +20,13 @@ const CategoryPage = () => {
 
   return (
     <div className="container py-8">
+      {/* Breadcrumb */}
+      <div className="mb-4">
+        <Link to="/categories" className="text-emerald-600 hover:underline flex items-center">
+          <ArrowLeft className="h-4 w-4 mr-2" /> All Categories
+        </Link>
+      </div>
+      
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{category?.name || 'Category Not Found'}</h1>
